@@ -1,4 +1,3 @@
-
 // Фабричный метод.
 // Написать программу, которая
 //   - получает на вход полный путь к папке
@@ -17,21 +16,19 @@
 #include "class_file.h"
 
 int main() {
-
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	setlocale(LC_ALL, "RUS");
 
 	std::cout << "specify the path to the folder: ";
-	fs::path path;
 
+	fs::path path;
 	std::wcin >> path;
 	
 	std::unique_ptr<TxtCreator> txt_creator = std::make_unique<TxtCreator>();
 	std::unique_ptr<JsonCreator> json_creator = std::make_unique<JsonCreator>();
-	
+
 	txt_creator->parseFileDir(path);
 	txt_creator->factoryReports(path);
-	
+
 	json_creator->parseFileDir(path);
 	json_creator->factoryReports(path);
 	
